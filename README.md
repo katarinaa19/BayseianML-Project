@@ -176,6 +176,6 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_loss', patience=3, verb
 ![1c3123595ccabb25c4d7fa19bee3c91](https://github.com/user-attachments/assets/38582913-d6c3-447c-86ee-617a57df6309)
 
 - Test
-- "startseq" indicates beginning of the sentence
-- "endseq" indicates end of the sentence
+  - "startseq" indicates beginning of the sentence
+  - "endseq" indicates end of the sentence
 ![6a5bc70ed67dbdfaaa373a98647737d](https://github.com/user-attachments/assets/f6fd8f4d-0277-4fae-9bc1-f05f7b7c3807)
