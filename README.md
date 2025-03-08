@@ -71,12 +71,17 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 ```
 
 #### 1.2 Preprocessing Images
-- Feature Extraction from Images using ResNet152: this code extracts **deep learning-based features** from images using the **ResNet152** model, a widely used convolutional neural network (CNN) pre-trained on **ImageNet**.
-- Uses ResNet152 to extract deep features from images.
-  - Loads each image (load_img) and resizes it to 224×224 pixels (required by VGG16).
-  - Converts the image to an array (img_to_array).
-  - Adds a batch dimension (np.expand_dims(img, axis=0)) for model compatibility.
- 
+- Feature Extraction from Images using ResNet152
+
+| **Model**            | **Best For**                          | **Feature Vector Size** | **Accuracy**     | **Speed**     |
+|----------------------|--------------------------------------|------------------|---------------|-------------|
+| **DenseNet201**      | Good feature reuse, compact model  | 1920             | 👍 High       | ⚡ Medium   |
+| **EfficientNet-B4**  | Best balance of speed & accuracy   | 1792             | 🚀 Higher     | ⚡ Faster   |
+| **ConvNeXt-Large**   | State-of-the-art deep features     | 2048+            | 🔥 Very High  | ⏳ Slower   |
+| **ResNet152**        | Robust & widely used               | 2048             | 👍 High       | ⚡ Medium   |
+
+This code extracts **deep learning-based features** from images using the **ResNet152** model, a widely used convolutional neural network (CNN) pre-trained on **ImageNet**.
+
 ```python
 base_model = ResNet152(weights='imagenet', include_top=False, pooling='avg')
 feature_model = Model(inputs=base_model.input, outputs=base_model.output)
@@ -87,9 +92,6 @@ feature_model = Model(inputs=base_model.input, outputs=base_model.output)
 ```python
 img = tf.keras.applications.imagenet_utils.preprocess_input(img)
 ```
-- Predicts feature embeddings using feature_model.predict(img)
-
-#### 1.3 Train Test Split
 
 
 ### **📌 Step 2: Encode**  
