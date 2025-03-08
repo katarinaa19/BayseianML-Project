@@ -38,28 +38,32 @@ The objective of this project is to develop an Image Captioning model that can g
   - `(256,) → (max_caption_length-1, 256)`
   - This ensures image features align with textual input sequences.
   
-`input1 = Input(shape=(X_train.shape[1],))
+```python
+input1 = Input(shape=(X_train.shape[1],))
 img_features = Dense(embedding_dim, activation='relu')(input1)
 img_features = RepeatVector(max_caption_length-1)(img_features)  # Convert to 3D
-`
+```
+
 #### 2.2 Text Feature Encoding
 - Convert words into vector representations using an `Embedding` layer.  
 - Transform text into 3D format, which is required for sequential processing in LSTM.
 
-`input2 = Input(shape=(max_caption_length-1,))
+```python
+input2 = Input(shape=(max_caption_length-1,))
 text_features = Embedding(vocab_size, embedding_dim, mask_zero=True)(input2)
 text_features = LSTM(lstm_units, return_sequences=True)(text_features)
-`
+```
 
 #### 2.3 Merge & Caption Generation  
 - Two-step merging process:  
   1. `Add()` merges visual and textual features.  
   2. LSTM processes the combined sequence, learning relationships between image content and text.  
 
-'
+```python
 decoder = Add()([img_features, text_features])
 decoder = LSTM(lstm_units, return_sequences=True)(decoder)
-'
+```
+
 #### 2.4 Caption Generation with LSTM
 - LSTM generates the caption word by word, predicting the next word based on the image and previous words.  
 - Softmax selects the most probable word, ensuring meaningful sentence formation.  
