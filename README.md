@@ -81,11 +81,11 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 - Extract image features using `DenseNet201` to convert images into meaningful numerical vectors.  
 - Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
 - Convert features to 3D using `RepeatVector(max_caption_length-1)`
-  - `(256,) → (max_caption_length-1, 256)`
+  - `(256,) → (max_caption_length, 256)`
   - This ensures image features align with textual input sequences.
   
 ```python
-input1 = Input(shape=(X_train.shape[1],))
+input1 = Input(shape=(512,))
 img_features = Dense(embedding_dim, activation='relu')(input1)
 img_features = RepeatVector(max_caption_length-1)(img_features)  # Convert to 3D
 ```
@@ -95,7 +95,7 @@ img_features = RepeatVector(max_caption_length-1)(img_features)  # Convert to 3D
 - Transform text into 3D format, which is required for sequential processing in LSTM.
 
 ```python
-input2 = Input(shape=(max_caption_length-1,))
+input2 = Input(shape=(max_caption_length,))
 text_features = Embedding(vocab_size, embedding_dim, mask_zero=True)(input2)
 text_features = LSTM(lstm_units, return_sequences=True)(text_features)
 ```
@@ -121,8 +121,8 @@ decoder = LSTM(lstm_units, return_sequences=True)(decoder)
 - Use Dropout (0.5) to prevent overfitting and improve generalization.  
 
 ```python
-decoder = Dense(output_layer_1, activation='relu')(decoder)
-decoder = Dense(output_layer_2, activation='relu')(decoder)
+decoder = Dense(128, activation='relu')(decoder)
+decoder = Dense(64, activation='relu')(decoder)
 decoder = Dropout(0.5)(decoder)  # Prevent overfitting
 output = Dense(vocab_size, activation='softmax')(decoder)
 ```
