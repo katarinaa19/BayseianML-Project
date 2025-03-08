@@ -37,7 +37,7 @@ The objective of this project is to develop an Image Captioning model that can g
   - Adds "startseq" and "endseq" to mark sequence boundaries.
 
 ```python
-captions = data_first_1000['caption'].str.lower().str.replace(r'[^a-z\s]', '', regex=True).str.replace(r'\s+', ' ', regex=True).apply(lambda x: ' '.join([w for w in x.split() if len(w) > 1]))
+captions = data['caption'].str.lower().str.replace(r'[^a-z\s]', '', regex=True).str.replace(r'\s+', ' ', regex=True).apply(lambda x: ' '.join([w for w in x.split() if len(w) > 1]))
 captions = "startseq " + captions + " endseq"
 ```
 - Tokenization
