@@ -18,6 +18,7 @@ The objective of this project is to develop an Image Captioning model that can g
 - **Images:** 8,091 natural scene images.
 - **Captions per image:** Each image has 5 corresponding descriptions.
 - **Source:** https://www.kaggle.com/datasets/adityajn105/flickr8k
+![image](https://github.com/user-attachments/assets/8a8360c4-7803-44e8-b0c5-109a95f16702)
 
 ---
 
