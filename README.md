@@ -1,5 +1,5 @@
 # **Image Captioning**  
-📅 **Date:** [Enter Date]  
+📅 **Date:** 3/7/2025
 👥 **Team Members:** Terry Zhuang, Yijia Song, Yunlei Xu, Katarina Wang
 
 ---
