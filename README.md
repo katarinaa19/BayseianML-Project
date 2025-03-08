@@ -1,6 +1,6 @@
 # **Image Captioning**  
 📅 **Date:** [Enter Date]  
-👥 **Team Members:** [Enter Names]  
+👥 **Team Members:** Terry Zhuang, Yijia Song, Yunlei Xu, Katarina Wang
 
 ---
 
