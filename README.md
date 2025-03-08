@@ -25,7 +25,8 @@ The objective of this project is to develop an Image Captioning model that can g
 ## **🔄2. Project Workflow**  
 
 ### **Model Workflow**  
-![Workflow Diagram](https://github.com/user-attachments/assets/50c75e10-c497-4581-ba44-684b9337360a)  
+![image](https://github.com/user-attachments/assets/c0593782-75c7-47bb-85ca-e81d1aff9b02)
+
 
 ### **📌 Step 1: Data Preprocessing**  
 #### 1.1 Preprocessing Captions 
@@ -101,7 +102,7 @@ text_features = LSTM(lstm_units, return_sequences=True)(text_features)
 
 
 ### **📌 Step 3: Decode**  
-#### 4.1 Concatenate Captions and Images to Fit in LSTM Model  
+#### 3.1 Concatenate Captions and Images to Fit in LSTM Model  
 - Two-step merging process:  
   1. `Add()` merges visual and textual features.  
   2. LSTM processes the combined sequence, learning relationships between image content and text.  
@@ -111,10 +112,10 @@ decoder = Add()([img_features, text_features])
 decoder = LSTM(lstm_units, return_sequences=True)(decoder)
 ```
 
-#### 4.2 Use a Dense + LSTM-based Decoder to Predict the Next Word in the Sequence
+#### 3.2 Use a Dense + LSTM-based Decoder to Predict the Next Word in the Sequence
 - LSTM generates the caption word by word, predicting the next word based on the image and previous words.  
 
-#### 4.3 Model Refinement
+#### 3.3 Model Refinement
 - Use two `Dense` layers to extract key features and improve accuracy.  
 - Apply a Softmax layer to select the most probable word from the vocabulary.  
 - Use Dropout (0.5) to prevent overfitting and improve generalization.  
