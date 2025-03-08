@@ -134,13 +134,13 @@ decoder = LSTM(lstm_units, return_sequences=True)(decoder)
 
 #### 3.3 Model Refinement
 - Use two `Dense` layers to extract key features and improve accuracy.  
-- Apply a Softmax layer to select the most probable word from the vocabulary.  
+- Apply a `softmax` layer to select the most probable word from the vocabulary.  
 - Use Dropout (0.5) to prevent overfitting and improve generalization.  
 
 ```python
 decoder = Dense(128, activation='relu')(decoder)
 decoder = Dense(64, activation='relu')(decoder)
-decoder = Dropout(0.5)(decoder)  # Prevent overfitting
+decoder = Dropout(0.5)(decoder) 
 output = Dense(vocab_size, activation='softmax')(decoder)
 ```
 
@@ -175,5 +175,7 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_loss', patience=3, verb
   - The validation loss does not immediately increase; instead, it gradually stabilizes around epoch 6-7. This means the model has generalized well up to that point.
 ![1c3123595ccabb25c4d7fa19bee3c91](https://github.com/user-attachments/assets/38582913-d6c3-447c-86ee-617a57df6309)
 
-- Test 
+- Test
+- "startseq" indicates beginning of the sentence
+- "endseq" indicates end of the sentence
 ![6a5bc70ed67dbdfaaa373a98647737d](https://github.com/user-attachments/assets/f6fd8f4d-0277-4fae-9bc1-f05f7b7c3807)
