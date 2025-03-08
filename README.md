@@ -42,11 +42,10 @@ captions = "startseq " + captions + " endseq"
 ```
 - Tokenization
   - Initializes a Tokenizer to convert words into numerical tokens.
-  - Uses oov_token="<OOV>" for out-of-vocabulary words.
   - Trains on cleaned captions, assigning unique indices to words.
   
 ```python
-tokenizer = Tokenizer(oov_token="<OOV>")
+tokenizer = Tokenizer()
 tokenizer.fit_on_texts(captions)
 ```
 - Define Vocabulary and Caption Length
@@ -72,12 +71,23 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 ```
 
 #### 1.2 Preprocessing Images
-- Use VGG16 to extract deep features from images
-
+- Feature Extraction from Images using ResNet152: this code extracts **deep learning-based features** from images using the **ResNet152** model, a widely used convolutional neural network (CNN) pre-trained on **ImageNet**.
+- Uses ResNet152 to extract deep features from images.
+  - Loads each image (load_img) and resizes it to 224×224 pixels (required by VGG16).
+  - Converts the image to an array (img_to_array).
+  - Adds a batch dimension (np.expand_dims(img, axis=0)) for model compatibility.
+ 
 ```python
-base_model = VGG16(weights='imagenet', include_top=False, pooling='avg')
+base_model = ResNet152(weights='imagenet', include_top=False, pooling='avg')
 feature_model = Model(inputs=base_model.input, outputs=base_model.output)
 ```
+
+- Preprocesses images using ImageNet norms.
+  
+```python
+img = tf.keras.applications.imagenet_utils.preprocess_input(img)
+```
+- Predicts feature embeddings using feature_model.predict(img)
 
 #### 1.3 Train Test Split
 
@@ -157,7 +167,7 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_loss', patience=3, verb
 
 ---
 
-## ***📊3. Model Results & Testing**  
+## **📊3. Model Results & Testing**  
 - The graph shows the training loss (blue line) and validation loss (orange line) over multiple epochs.
   - The training loss (blue line) steadily decreases, showing that the model is effectively learning from the data.
   - The validation loss does not immediately increase; instead, it gradually stabilizes around epoch 6-7. This means the model has generalized well up to that point.
