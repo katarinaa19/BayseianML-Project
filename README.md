@@ -74,6 +74,7 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 #### 1.3 Train Test Split
 
 
+
 ### **📌 Step 2: Encode**  
 #### 2.1 Image Feature Encoding
 - Extract image features using DenseNet201 to convert images into meaningful numerical vectors.  
