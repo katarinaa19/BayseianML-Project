@@ -144,7 +144,7 @@ decoder = Dropout(0.5)(decoder)
 output = Dense(vocab_size, activation='softmax')(decoder)
 ```
 
-#### **📌 Step 4: Model Fit** 
+### **📌 Step 4: Model Fit** 
 - Data Generator Setup: Loads images and captions dynamically in batches, preventing memory overload.
 
 ```python
