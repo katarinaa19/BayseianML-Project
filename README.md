@@ -158,6 +158,10 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_loss', patience=3, verb
 ---
 
 ## ***📊3. Model Results & Testing**  
-- [Explain how the model is evaluated]  
-- [Metrics used: BLEU, ROUGE, or others]  
-- [Show sample results: image + generated caption]  
+- The graph shows the training loss (blue line) and validation loss (orange line) over multiple epochs.
+  - The training loss (blue line) steadily decreases, showing that the model is effectively learning from the data.
+  - The validation loss does not immediately increase; instead, it gradually stabilizes around epoch 6-7. This means the model has generalized well up to that point.
+![1c3123595ccabb25c4d7fa19bee3c91](https://github.com/user-attachments/assets/38582913-d6c3-447c-86ee-617a57df6309)
+
+- Test 
+![6a5bc70ed67dbdfaaa373a98647737d](https://github.com/user-attachments/assets/f6fd8f4d-0277-4fae-9bc1-f05f7b7c3807)
