@@ -83,15 +83,14 @@ feature_model = Model(inputs=base_model.input, outputs=base_model.output)
 
 
 ### **📌 Step 2: Encode**  
-#### 2.1 Image Features Encoding with CNNs
-- A Dense layer processes and transforms the image features.  
+#### 2.1 Image Features Encoding with CNNs 
 - Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
 - Convert features to 3D using `RepeatVector(max_caption_length-1)`
   - `(256,) → (max_caption_length, 256)`
   - This ensures image features align with textual input sequences.
   
 ```python
-input1 = Input(shape=(512,))
+input1 = Input(shape=(2048,))
 img_features = Dense(embedding_dim, activation='relu')(input1)
 img_features = RepeatVector(max_caption_length-1)(img_features)  # Convert to 3D
 ```
