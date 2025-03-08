@@ -69,12 +69,12 @@ decoder = LSTM(lstm_units, return_sequences=True)(decoder)
 - Apply a Softmax layer to select the most probable word from the vocabulary.  
 - Use Dropout (0.5) to prevent overfitting and improve generalization.  
 
-'
+```python
 decoder = Dense(output_layer_1, activation='relu')(decoder)
 decoder = Dense(output_layer_2, activation='relu')(decoder)
 decoder = Dropout(0.5)(decoder)  # Prevent overfitting
 output = Dense(vocab_size, activation='softmax')(decoder)
-'
+```
 
 
 
