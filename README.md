@@ -40,7 +40,7 @@ The objective of this project is to develop an Image Captioning model that can g
 
 ---
 
-## ***📊 3. Model Results & Testing**  
+## ***📊3. Model Results & Testing**  
 - [Explain how the model is evaluated]  
 - [Metrics used: BLEU, ROUGE, or others]  
 - [Show sample results: image + generated caption]  
