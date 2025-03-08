@@ -76,7 +76,7 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 
 
 ### **📌 Step 2: Encode**  
-#### 2.1 Image Feature Encoding
+#### 2.1 Image Features Encoding with CNNs
 - Extract image features using `DenseNet201` to convert images into meaningful numerical vectors.  
 - Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
 - Convert features to 3D using `RepeatVector(max_caption_length-1)`
@@ -89,7 +89,7 @@ img_features = Dense(embedding_dim, activation='relu')(input1)
 img_features = RepeatVector(max_caption_length-1)(img_features)  # Convert to 3D
 ```
 
-#### 2.2 Text Feature Encoding
+#### 2.2 Text Features Encoding with LSTMs
 - Convert words into vector representations using an `Embedding` layer.  
 - Transform text into 3D format, which is required for sequential processing in LSTM.
 
@@ -111,7 +111,7 @@ decoder = Add()([img_features, text_features])
 decoder = LSTM(lstm_units, return_sequences=True)(decoder)
 ```
 
-#### 4.2 Caption Generation with LSTM
+#### 4.2 Use a Dense + LSTM-based Decoder to Predict the Next Word in the Sequence
 - LSTM generates the caption word by word, predicting the next word based on the image and previous words.  
 
 #### 4.3 Model Refinement
