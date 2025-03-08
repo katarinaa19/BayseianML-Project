@@ -28,7 +28,51 @@ The objective of this project is to develop an Image Captioning model that can g
 ![Workflow Diagram](https://github.com/user-attachments/assets/50c75e10-c497-4581-ba44-684b9337360a)  
 
 ### **📌 Step 1: Data Preprocessing**  
-- [Brief explanation of preprocessing]  
+#### 1.1 Preprocessing Captions 
+- Normalization
+  - Converts text to lowercase for consistency.
+  - Removes punctuation, special symbols, and numbers.
+  - Eliminates extra spaces and single-letter words.
+  - Adds "startseq" and "endseq" to mark sequence boundaries.
+
+```python
+captions = data_first_1000['caption'].str.lower().str.replace(r'[^a-z\s]', '', regex=True).str.replace(r'\s+', ' ', regex=True).apply(lambda x: ' '.join([w for w in x.split() if len(w) > 1]))
+captions = "startseq " + captions + " endseq"
+```
+- Tokenization
+  - Initializes a Tokenizer to convert words into numerical tokens.
+  - Uses oov_token="<OOV>" for out-of-vocabulary words.
+  - Trains on cleaned captions, assigning unique indices to words.
+  
+```python
+tokenizer = Tokenizer(oov_token="<OOV>")
+tokenizer.fit_on_texts(captions)
+```
+- Define Vocabulary and Caption Length
+  - vocab_size: Total unique words from the tokenizer plus one for padding.
+  - max_caption_length: Length of the longest caption, used for padding.
+
+```python
+vocab_size = len(tokenizer.word_index) + 1
+max_caption_length = max(len(caption.split()) for caption in captions)
+```
+- Convert Captions to Sequences
+  - Converts each caption into a sequence of integers, where each word is replaced by its corresponding token index from the tokenizer.
+  
+```python
+sequences = tokenizer.texts_to_sequences(captions)
+```
+- Padding the Sequences
+  - Ensures that all sequences have the same length (max_caption_length).
+  - Uses post-padding, meaning zeros are added at the end of shorter captions.
+
+```python
+padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='post')
+```
+
+#### 1.2 Preprocessing Images
+#### 1.3 Train Test Split
+
 
 ### **📌 Step 2: Encode**  
 #### 2.1 Image Feature Encoding
