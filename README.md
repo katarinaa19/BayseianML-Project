@@ -31,7 +31,37 @@ The objective of this project is to develop an Image Captioning model that can g
 - [Brief explanation of preprocessing]  
 
 ### **📌 Step 2: Encode**  
-- [Brief explanation of encoding process]  
+#### 2.1 Image Feature Encoding
+- Extract image features using DenseNet201 to convert images into meaningful numerical vectors.  
+- Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
+- Convert features to 3D using `RepeatVector(max_caption_length-1)`: (256,) → (max_caption_length-1, 256)
+  - This ensures image features align with textual input sequences.  
+
+#### 2.2 Text Feature Encoding
+- Convert words into vector representations using an `Embedding` layer.  
+- Transform text into 3D format, which is required for sequential processing in LSTM.  
+
+#### 2.3 Merge & Caption Generation  
+- Two-step merging process:  
+  1. `Add()` merges visual and textual features.  
+  2. LSTM processes the combined sequence, learning relationships between image content and text.  
+
+#### 2.4 Caption Generation with LSTM
+- LSTM generates the caption word by word, predicting the next word based on the image and previous words.  
+- Softmax selects the most probable word, ensuring meaningful sentence formation.  
+
+#### 2.5 Model Refinement
+- Use two `Dense` layers to extract key features and improve accuracy.  
+- Apply a Softmax layer to select the most probable word from the vocabulary.  
+- Use Dropout (0.5) to prevent overfitting and improve generalization.  
+
+
+
+
+
+
+
+
 
 ### **📌 Step 3: Model Fitting**  
 - [Brief explanation of training the model]  
