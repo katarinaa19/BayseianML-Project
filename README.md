@@ -99,7 +99,9 @@ text_features = Embedding(vocab_size, embedding_dim, mask_zero=True)(input2)
 text_features = LSTM(lstm_units, return_sequences=True)(text_features)
 ```
 
-#### 2.3 Merge & Caption Generation  
+
+### **📌 Step 3: Decode**  
+#### 4.1 Merge & Caption Generation  
 - Two-step merging process:  
   1. `Add()` merges visual and textual features.  
   2. LSTM processes the combined sequence, learning relationships between image content and text.  
@@ -109,11 +111,11 @@ decoder = Add()([img_features, text_features])
 decoder = LSTM(lstm_units, return_sequences=True)(decoder)
 ```
 
-#### 2.4 Caption Generation with LSTM
+#### 4.2 Caption Generation with LSTM
 - LSTM generates the caption word by word, predicting the next word based on the image and previous words.  
 - Softmax selects the most probable word, ensuring meaningful sentence formation.  
 
-#### 2.5 Model Refinement
+#### 4.3 Model Refinement
 - Use two `Dense` layers to extract key features and improve accuracy.  
 - Apply a Softmax layer to select the most probable word from the vocabulary.  
 - Use Dropout (0.5) to prevent overfitting and improve generalization.  
@@ -124,18 +126,6 @@ decoder = Dense(output_layer_2, activation='relu')(decoder)
 decoder = Dropout(0.5)(decoder)  # Prevent overfitting
 output = Dense(vocab_size, activation='softmax')(decoder)
 ```
-
-
-
-
-
-
-
-### **📌 Step 3: Model Fitting**  
-- [Brief explanation of training the model]  
-
-### **📌 Step 4: Decode**  
-- [Brief explanation of how captions are generated]  
 
 ---
 
