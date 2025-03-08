@@ -22,9 +22,9 @@ The objective of this project is to develop an Image Captioning model that can g
 
 ---
 
-## **🔄2. Project Workflow**  
+## **🔄2. Model Workflow**  
 
-### **Model Workflow**  
+### **Flowchart**  
 ![image](https://github.com/user-attachments/assets/c0593782-75c7-47bb-85ca-e81d1aff9b02)
 
 
@@ -72,8 +72,8 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 ```
 
 #### 1.2 Preprocessing Images
+- 
 #### 1.3 Train Test Split
-
 
 
 ### **📌 Step 2: Encode**  
