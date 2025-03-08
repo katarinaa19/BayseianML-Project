@@ -77,7 +77,7 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 
 ### **📌 Step 2: Encode**  
 #### 2.1 Image Feature Encoding
-- Extract image features using DenseNet201 to convert images into meaningful numerical vectors.  
+- Extract image features using `DenseNet201` to convert images into meaningful numerical vectors.  
 - Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
 - Convert features to 3D using `RepeatVector(max_caption_length-1)`
   - `(256,) → (max_caption_length-1, 256)`
@@ -101,7 +101,7 @@ text_features = LSTM(lstm_units, return_sequences=True)(text_features)
 
 
 ### **📌 Step 3: Decode**  
-#### 4.1 Merge & Caption Generation  
+#### 4.1 Concatenate Captions and Images to Fit in LSTM Model  
 - Two-step merging process:  
   1. `Add()` merges visual and textual features.  
   2. LSTM processes the combined sequence, learning relationships between image content and text.  
@@ -113,7 +113,6 @@ decoder = LSTM(lstm_units, return_sequences=True)(decoder)
 
 #### 4.2 Caption Generation with LSTM
 - LSTM generates the caption word by word, predicting the next word based on the image and previous words.  
-- Softmax selects the most probable word, ensuring meaningful sentence formation.  
 
 #### 4.3 Model Refinement
 - Use two `Dense` layers to extract key features and improve accuracy.  
