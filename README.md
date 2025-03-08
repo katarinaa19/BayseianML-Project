@@ -34,7 +34,8 @@ The objective of this project is to develop an Image Captioning model that can g
 #### 2.1 Image Feature Encoding
 - Extract image features using DenseNet201 to convert images into meaningful numerical vectors.  
 - Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
-- Convert features to 3D using `RepeatVector(max_caption_length-1)`: (256,) → (max_caption_length-1, 256)
+- Convert features to 3D using `RepeatVector(max_caption_length-1)`:
+  `(256,) → (max_caption_length-1, 256)`
   - This ensures image features align with textual input sequences.  
 
 #### 2.2 Text Feature Encoding
