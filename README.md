@@ -84,7 +84,7 @@ feature_model = Model(inputs=base_model.input, outputs=base_model.output)
 
 ### **📌 Step 2: Encode**  
 #### 2.1 Image Features Encoding with CNNs
-- Extract image features using `DenseNet201` to convert images into meaningful numerical vectors.  
+- A Dense layer processes and transforms the image features.  
 - Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
 - Convert features to 3D using `RepeatVector(max_caption_length-1)`
   - `(256,) → (max_caption_length, 256)`
