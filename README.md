@@ -25,7 +25,7 @@ The objective of this project is to develop an Image Captioning model that can g
 ## **🔄2. Model Workflow**  
 
 ### **Flowchart**  
-![image](https://github.com/user-attachments/assets/c0593782-75c7-47bb-85ca-e81d1aff9b02)
+![image](https://github.com/user-attachments/assets/0555ff8f-a24a-41a8-acd2-65b31b388634)
 
 
 ### **📌 Step 1: Data Preprocessing**  
