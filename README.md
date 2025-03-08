@@ -132,6 +132,29 @@ decoder = Dropout(0.5)(decoder)  # Prevent overfitting
 output = Dense(vocab_size, activation='softmax')(decoder)
 ```
 
+#### **📌 Step 4: Model Fit** 
+- Data Generator Setup: Loads images and captions dynamically in batches, preventing memory overload.
+
+```python
+train_generator = CustomDataGenerator(df=train, X_col='image', y_col='caption', batch_size=64, 
+                                      directory=image_path, tokenizer=tokenizer, vocab_size=vocab_size, 
+                                      max_length=max_caption_length, features=features)
+
+validation_generator = CustomDataGenerator(df=test, X_col='image', y_col='caption', batch_size=64, 
+                                           directory=image_path, tokenizer=tokenizer, vocab_size=vocab_size, 
+                                           max_length=max_caption_length, features=features)
+```
+- Callback
+  - ModelCheckpoint: Saves the model automatically whenever the validation loss improves, ensuring the best version is retained.
+  - EarlyStopping: Stops training early if the validation loss does not improve for a set number of epochs, preventing overfitting.
+  - ReduceLROnPlateau: Reduces the learning rate when the validation loss stops improving, helping the model fine-tune its learning.
+
+```python
+checkpoint = ModelCheckpoint(model_name, monitor="val_loss", mode="min", save_best_only=True, verbose=1)
+earlystopping = EarlyStopping(monitor='val_loss', min_delta=0, patience=5, verbose=1, restore_best_weights=True)
+learning_rate_reduction = ReduceLROnPlateau(monitor='val_loss', patience=3, verbose=1, factor=0.2, min_lr=1e-8)
+```
+
 ---
 
 ## ***📊3. Model Results & Testing**  
