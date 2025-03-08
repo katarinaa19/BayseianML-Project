@@ -72,7 +72,13 @@ padded_sequences = pad_sequences(sequences, maxlen=max_caption_length, padding='
 ```
 
 #### 1.2 Preprocessing Images
-- 
+- Use VGG16 to extract deep features from images
+
+```python
+base_model = VGG16(weights='imagenet', include_top=False, pooling='avg')
+feature_model = Model(inputs=base_model.input, outputs=base_model.output)
+```
+
 #### 1.3 Train Test Split
 
 
