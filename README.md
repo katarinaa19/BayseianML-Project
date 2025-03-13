@@ -56,8 +56,8 @@ tokenizer.fit_on_texts(captions)
 vocab_size = len(tokenizer.word_index) + 1
 max_caption_length = max(len(caption.split()) for caption in captions)
 ```
-- Convert Captions to Sequences
-  - Converts each caption into a sequence of integers, where each word is replaced by its corresponding token index from the tokenizer.
+- Convert tokens to sequences 
+  - Converts each token into a sequence of integers, where each word is replaced by its corresponding token index from the tokenizer.
   
 ```python
 sequences = tokenizer.texts_to_sequences(captions)
