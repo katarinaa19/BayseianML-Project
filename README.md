@@ -103,8 +103,8 @@ img = tf.keras.applications.imagenet_utils.preprocess_input(img)
   
 ```python
 input1 = Input(shape=(2048,))
-img_features = Dense(embedding_dim, activation='relu')(input1)
-img_features = RepeatVector(max_caption_length-1)(img_features)  # Convert to 3D
+img_features = Dense(256, activation='relu')(input1)
+img_features_reshaped = Reshape((1, 256), input_shape=(256,))(img_features)
 ```
 
 #### 2.2 Text Features Encoding with LSTMs
