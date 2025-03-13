@@ -5,9 +5,9 @@
 
 ---
 
-## **🌟1. Overview**  
+## **🌟 1. Overview**  
 
-### **🎯Objective**  
+### **🎯 Objective**  
 The objective of this project is to develop an Image Captioning model that can generate accurate and meaningful textual descriptions for images. By leveraging Convolutional Neural Networks (CNNs) for feature extraction and Long Short-Term Memory networks (LSTMs) for text generation, the model aims to:
 - **Process Textual and Visual Data**: Tokenize and preprocess captions to create a structured vocabulary for training, while simultaneously extracting image features using a pre-trained CNN (e.g., DenseNet201) to encode visual content into feature vectors.  
 - **Train a Sequence-to-Sequence Model**: Combine CNN-extracted features with LSTM-based text generation to predict the next word in a caption.
@@ -22,7 +22,7 @@ The objective of this project is to develop an Image Captioning model that can g
 
 ---
 
-## **🔄2. Model Workflow**  
+## **🔄 2. Model Workflow**  
 
 ### **Flowchart**  
 ![image](https://github.com/user-attachments/assets/0555ff8f-a24a-41a8-acd2-65b31b388634)
@@ -169,7 +169,7 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_loss', patience=3, verb
 
 ---
 
-## **📊3. Model Results & Testing**  
+## **📊 3. Model Results & Testing**  
 - The graph shows the training loss (blue line) and validation loss (orange line) over multiple epochs.
   - The training loss (blue line) steadily decreases, showing that the model is effectively learning from the data.
   - The validation loss does not immediately increase; instead, it gradually stabilizes around epoch 6-7. This means the model has generalized well up to that point.
