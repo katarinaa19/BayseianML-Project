@@ -180,3 +180,10 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_loss', patience=3, verb
   - "startseq" indicates beginning of the sentence
   - "endseq" indicates end of the sentence
 ![6a5bc70ed67dbdfaaa373a98647737d](https://github.com/user-attachments/assets/f6fd8f4d-0277-4fae-9bc1-f05f7b7c3807)
+
+- Future Improvement
+    - Data Augmentation
+      - Augment images with random cropping, flipping, color jittering to improve model robustness.
+      - Augment captions using paraphrasing models (e.g., T5, Pegasus) to increase diversity.
+    - Better Tokenization
+      - Instead of a simple Tokenizer(), consider SentencePiece (Unigram/Lattice model) or Byte-Pair Encoding (BPE) for handling rare words and out-of-vocabulary tokens more efficiently.
