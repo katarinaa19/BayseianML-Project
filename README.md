@@ -97,8 +97,8 @@ img = tf.keras.applications.imagenet_utils.preprocess_input(img)
 ### **📌 Step 2: Encode**  
 #### 2.1 Image Features Encoding with CNNs 
 - Reduce dimensionality using `Dense(256)` to ensure a compact representation of the image.  
-- Convert features to 3D using `RepeatVector(max_caption_length-1)`
-  - `(256,) → (max_caption_length, 256)`
+- Convert features to 3D using `Reshape()`
+  - `(batch_size, 256) → (batch_size, 1, 256)`
   - This ensures image features align with textual input sequences.
   
 ```python
@@ -146,9 +146,7 @@ output = Dense(vocab_size, activation='softmax')(decoder)
 ```
 
 ### **📌 Step 4: Model Fit** 
-
-#### 4.1 Data Generator Setup
-  - Loads images and captions dynamically in batches, preventing memory overload.
+- Data Generator Setup: Loads images and captions dynamically in batches, preventing memory overload.
 
 ```python
 train_generator = CustomDataGenerator(df=train, X_col='image', y_col='caption', batch_size=64, 
@@ -159,9 +157,7 @@ validation_generator = CustomDataGenerator(df=test, X_col='image', y_col='captio
                                            directory=image_path, tokenizer=tokenizer, vocab_size=vocab_size, 
                                            max_length=max_caption_length, features=features)
 ```
-
-#### 4.2 Callback
-
+- Callback
   - ModelCheckpoint: Saves the model automatically whenever the validation loss improves, ensuring the best version is retained.
   - EarlyStopping: Stops training early if the validation loss does not improve for a set number of epochs, preventing overfitting.
   - ReduceLROnPlateau: Reduces the learning rate when the validation loss stops improving, helping the model fine-tune its learning.
