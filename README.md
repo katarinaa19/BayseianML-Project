@@ -13,7 +13,7 @@ The objective of this project is to develop an Image Captioning model that can g
 - **Train a Sequence-to-Sequence Model**: Combine CNN-extracted features with LSTM-based text generation to predict the next word in a caption.
 - **Generate Captions for New Images**: Use the trained model to describe unseen images with relevant and coherent text.
 
-### **📂Dataset**  
+### **📂 Dataset**  
 - **Data Description**: The Flickr8k Dataset consists of 8,091 images, each paired with five unique textual descriptions, totaling 40,455 captions. It is specifically designed for training and evaluating models that generate natural language descriptions for images.
 - **Images:** 8,091 natural scene images.
 - **Captions per image:** Each image has 5 corresponding descriptions.
