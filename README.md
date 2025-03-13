@@ -117,22 +117,23 @@ text_features = Embedding(vocab_size, embedding_dim, mask_zero=True)(input2)
 text_features = LSTM(lstm_units, return_sequences=True)(text_features)
 ```
 
+#### 2.3 Concatenate Captions and Images to Fit in LSTM Model  
+- Two-step merging process:  
+  1. Concatenate visual and textual features.
+     ```python
+     merged = concatenate([img_features_reshaped,sentence_features],axis=1)
+     ```
+  2. LSTM processes the combined sequence, learning relationships between image content and text.
+     ```python
+     sentence_features = LSTM(256)(merged)
+     ```
 
 ### **📌 Step 3: Decode**  
-#### 3.1 Concatenate Captions and Images to Fit in LSTM Model  
-- Two-step merging process:  
-  1. `Add()` merges visual and textual features.  
-  2. LSTM processes the combined sequence, learning relationships between image content and text.  
 
-```python
-decoder = Add()([img_features, text_features])
-decoder = LSTM(lstm_units, return_sequences=True)(decoder)
-```
-
-#### 3.2 Use a Dense + LSTM-based Decoder to Predict the Next Word in the Sequence
+#### 3.1 Use a Dense + LSTM-based Decoder to Predict the Next Word in the Sequence
 - LSTM generates the caption word by word, predicting the next word based on the image and previous words.  
 
-#### 3.3 Model Refinement
+#### 3.2 Model Refinement
 - Use two `Dense` layers to extract key features and improve accuracy.  
 - Apply a `softmax` layer to select the most probable word from the vocabulary.  
 - Use Dropout (0.5) to prevent overfitting and improve generalization.  
