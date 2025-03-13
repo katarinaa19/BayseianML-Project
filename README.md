@@ -148,7 +148,7 @@ output = Dense(vocab_size, activation='softmax')(decoder)
 ### **📌 Step 4: Model Fit** 
 
 #### 4.1 Data Generator Setup
-Loads images and captions dynamically in batches, preventing memory overload.
+  - Loads images and captions dynamically in batches, preventing memory overload.
 
 ```python
 train_generator = CustomDataGenerator(df=train, X_col='image', y_col='caption', batch_size=64, 
